@@ -1,0 +1,49 @@
+.Palette {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.PaletteColors {
+    height: 90%;
+}
+
+.SingleColorPalette {
+    height: 50%;
+}
+
+.goBack {
+    width: 20%;
+    height: 50%;
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: -3.9px; 
+    background-color: black;
+    opacity: 1;
+}
+
+.backButton {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -15px;
+    text-align: center;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    font-size: 1rem;
+    line-height: 30px;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    text-decoration: none;
+}
+
+/* .goBack:hover .copy-button{
+    opacity: 1;
+    transition: 0.5s;
+} */
