@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ColorBox from './ColorBox';
 import NavBar from './navbar/NavBar';
-import seedColors from "./Colors/seedColors";
+// import seedColors from "./Colors/seedColors";
 import { generatePalette } from './Colors/colorHelpers';
 import PaletteFooter from './layout/PaletteFooter';
 // import './Palette.css';
 import classes from './Palette.module.css';
 
-const findPaltte = (id) => {
-    return seedColors.find(function(palette){
-      return palette.id === id;
-    })
-}
 
 const Palette = (props)=> {
     const paramId = useParams();
+
+    const findPaltte = (id) => {
+        return props.palettes.find(function(palette){
+          return palette.id === id;
+        })
+    }
     const thePallete = generatePalette(findPaltte(paramId.id))
 
     const {colors, paletteName, emoji, id} = thePallete;

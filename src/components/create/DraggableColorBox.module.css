@@ -7,3 +7,27 @@
     cursor: pointer;
     margin-bottom: -3.5px; 
 }
+
+.root:hover svg{
+    color: white;
+    transform: scale(1.5);
+}
+
+.boxContent{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteIcon{
+    /* color: black; */
+    transition: all 0.3s ease-in-out;
+}

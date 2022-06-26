@@ -1,20 +1,22 @@
 import React, {useState} from 'react';
 import { useParams, Link } from 'react-router-dom';
-import seedColors from "../Colors/seedColors";
+// import seedColors from "../Colors/seedColors";
 import { generatePalette } from '../Colors/colorHelpers';
 import NavBar from '../navbar/NavBar';
 import PaletteFooter from '../layout/PaletteFooter';
 import ColorBox from '../ColorBox';
 import classes from './SingleColorPalette.module.css';
 
-const findPalette = (id) => {
-    return seedColors.find(function(palette){
-      return palette.id === id;
-    })
-}
 
 const SingleColorPalette = (props) => {
     const params = useParams();
+
+    const findPalette = (id) => {
+        return props.palettes.find(function(palette){
+          return palette.id === id;
+        })
+    }
+
     const thePallete = generatePalette(findPalette(params.paletteId))
     const {paletteName, emoji} = thePallete;
 

@@ -39,6 +39,7 @@
     text-transform: uppercase;
     border: none;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .copyButton {

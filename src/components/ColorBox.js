@@ -8,7 +8,7 @@ import classes from './ColorBox.module.css';
 const ColorBox = (props) => {
   const {name, background, moreUrl, showingFullPalette} = props;
   const [copied, setcopied] = useState(false)
-  console.log(showingFullPalette)
+  // console.log(showingFullPalette)
   const isDarkColor = chroma(background).luminance() <= 0.08;
   const isLightColor = chroma(background).luminance() >= 0.7;
 
