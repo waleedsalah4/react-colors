@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DraggableColorList from './DraggableColorList';
+import PaletteFormNav from './PaletteFormNav';
 import { styled, useTheme } from '@mui/material/styles';
 import { ChromePicker } from 'react-color';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import DraggableColorList from './DraggableColorList';
 import {arrayMoveImmutable} from 'array-move';
 
 const drawerWidth = 290;
@@ -40,22 +37,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   }),
 );
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -71,9 +53,10 @@ export default function NewPaletteForm(props) {
   const navigate = useNavigate()
   const [open, setOpen] = useState(true);
   const [currColor, setCurrColor] = useState('teal');
-  const [colors, setColors] = useState([{name: 'blue', color: '#1611D7'}]);
+  const [colors, setColors] = useState(props.palettes[0].colors);
   const [newColorName, setNewColorName] = useState('')
-  const [newPaletteName, setNewPaletteName] = useState('')
+  const maxColors = 20;
+  const paletteIsFull = colors.length >= maxColors;
 
   useEffect(()=>{
     // console.log('run')
@@ -88,11 +71,7 @@ export default function NewPaletteForm(props) {
       )
     });
 
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-      return props.palettes.every(
-        ({paletteName}) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    });
+    
 
     // return function cleanUp() {
     //   ValidatorForm.removeValidationRule("isColorNameUnique");
@@ -127,20 +106,29 @@ export default function NewPaletteForm(props) {
     setNewColorName(evt.target.value)
   }
 
-  const handleChangePaletteName = (evt) => {
-    setNewPaletteName(evt.target.value)
-  }
-
-  const handleSubmitPalette = () => {
-    let newName = newPaletteName;
+  const handleSubmitPalette = (newPaletteName) => {
     const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, "-") ,
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-") ,
       colors: colors
     }
     props.savePalette(newPalette)
     navigate('/')
+}
+
+  const clearColors = () => {
+    setColors([])
   }
+  const addRondomColor = () => {
+    //pick rondom color from existing palettes
+    const allColors = props.palettes.map(p => p.colors).flat()
+    //flat=> put all colors arrays in one array
+    var rand = Math.floor(Math.random() * allColors.length)
+    const randomColor = allColors[rand]
+    setColors([...colors, randomColor])
+  }
+
+
 
   const removeColor =(colorName) =>{
     console.log('delet')
@@ -153,39 +141,16 @@ export default function NewPaletteForm(props) {
     setColors(newColorsIndex)
   }
 
+
+
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" color='default' open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Create A Palette
-          </Typography>
-          <ValidatorForm onSubmit={handleSubmitPalette} style={{display: 'flex'}}>
-            <TextValidator
-              name='newPaletteName'
-              label="Palette Name"
-              value={newPaletteName}
-              onChange={handleChangePaletteName} 
-              validators={["required", "isPaletteNameUnique"]}  
-              errorMessages={["Enter Palette name", "Name already used!"]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
-
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav 
+        open={open}
+        palettes={props.palettes}
+        handleDrawerOpen={handleDrawerOpen}
+        handleSubmitPalette={handleSubmitPalette}
+      />
       <Drawer
         sx={{
           width: drawerWidth,
@@ -210,8 +175,18 @@ export default function NewPaletteForm(props) {
             Design Your Palette
         </Typography>
         <div>
-            <Button variant='contained' color='secondary'>Clear Palette</Button>
-            <Button variant='contained' color='primary'>Rondom Color</Button>
+            <Button 
+              variant='contained'
+              color='secondary'
+              onClick={clearColors}>Clear Palette</Button>
+            <Button 
+              variant='contained' 
+              color='primary'
+              onClick={addRondomColor}
+              disabled={paletteIsFull}
+            >
+              Rondom Color
+            </Button>
         </div>
         <ChromePicker 
             color={currColor} 
@@ -229,10 +204,10 @@ export default function NewPaletteForm(props) {
               variant='contained' 
               type='submit'
               color='primary' 
-              style={{backgroundColor: currColor}}
-              // onClick={addNewColor}
+              disabled={paletteIsFull}
+              style={{backgroundColor: paletteIsFull ? 'grey' : currColor}}
           >
-              ADD COLOR
+              {paletteIsFull ? 'Palette Full' : 'ADD COLOR'}
           </Button>
         </ValidatorForm>
 
@@ -243,8 +218,9 @@ export default function NewPaletteForm(props) {
          <DraggableColorList 
           colors={colors} 
           removeColor={removeColor} 
-          // axis='xy'
-          // onSortEnd={onSortEnd}
+          axis='xy'
+          onSortEnd={onSortEnd}
+          distance={20}
         />
       </Main>
     </Box>
