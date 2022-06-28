@@ -1,0 +1,7 @@
+.root {
+    display: flex;
+}
+.navBtns{
+    display: flex;
+    flex-direction: row;
+}
