@@ -75,12 +75,14 @@ export default function NewPaletteForm(props) {
 
   
 
-  const handleSubmitPalette = (newPaletteName) => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-") ,
-      colors: colors
-    }
+  const handleSubmitPalette = (newPalette) => {
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-") 
+    newPalette.colors = colors
+    // const newPalette = {
+    //   paletteName: newPaletteName,
+    //   id: newPaletteName.toLowerCase().replace(/ /g, "-") ,
+    //   colors: colors
+    // }
     props.savePalette(newPalette)
     navigate('/')
 }

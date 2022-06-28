@@ -2,6 +2,13 @@
     display: flex;
 }
 .navBtns{
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
+    margin-right: 1rem;
+}
+.button {
+    margin: 0 0.5rem !important;
+}
+.link {
+    text-decoration: none;
 }
