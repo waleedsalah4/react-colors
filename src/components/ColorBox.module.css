@@ -8,6 +8,7 @@
     margin-bottom: -3.9px; 
     /* margin-bottom: -3.5px; */
 }
+
 .colorBoxHeight {
     height: 25%;
 }
@@ -137,4 +138,52 @@
 .copyMsg p {
     font-size: 2rem;
     font-size: 100;
+}
+
+/* media query  */
+
+/* lg */
+@media (max-width: 1199.98px) {
+    .ColorBox{
+        width: 25%;
+    }
+    .colorBoxHeight {
+        height: 20%;
+    }
+    
+    .SingleColorPalette  {
+        height: 33.3333%;
+    }
+}
+
+/* md */
+@media (max-width: 991.98px) {
+    .ColorBox{
+        width: 50%;
+    }
+    .colorBoxHeight {
+        height: 10%;
+    }
+    
+    .SingleColorPalette  {
+        height: 20%;
+    }
+}
+
+/* xs */
+@media (max-width: 575.98px) {
+    .ColorBox{
+        width: 100%;
+    }
+    .colorBoxHeight {
+        height: 5%;
+    }
+    
+    .SingleColorPalette  {
+        height: 10%;
+    }
+
+    .copyMsg h1 {
+        font-size: 5rem;
+    }
 }
