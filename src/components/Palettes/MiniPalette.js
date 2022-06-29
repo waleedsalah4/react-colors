@@ -1,8 +1,16 @@
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import classes from './MiniPalette.module.css';
 
 function MiniPalette(props) {
-  const { palette, handleClick } = props;
+  const { palette, handleClick, handleDelete } = props;
+
+  const deletePalette = (e) => {
+    e.stopPropagation();
+    handleDelete(props.id)
+  }
+
+
   const minColorsBoxes = palette.colors.map(color => (
     <div 
       key={color.name}
@@ -12,6 +20,13 @@ function MiniPalette(props) {
   ))
   return (
     <div className={classes.root} onClick={handleClick}>
+      <DeleteIcon 
+        className={classes.deleteIcon} 
+        sx={{ fontSize: 33 }} 
+        style={{transition: 'all 0.3s ease-in-out'}}
+        onClick={deletePalette}
+      />
+
       <div className={classes.colors}>
         {minColorsBoxes}
       </div>
