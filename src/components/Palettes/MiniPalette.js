@@ -3,11 +3,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import classes from './MiniPalette.module.css';
 
 function MiniPalette(props) {
-  const { palette, handleClick, handleDelete } = props;
+  const { palette, handleClick, openDialog } = props;
 
   const deletePalette = (e) => {
     e.stopPropagation();
-    handleDelete(props.id)
+    openDialog(props.id)
   }
 
 

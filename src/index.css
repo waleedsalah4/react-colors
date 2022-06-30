@@ -11,4 +11,49 @@ body {
 @media (max-width: 767.98px){} sm
 @media (max-width: 991.98px){} md
 @media (max-width: 1199.98px){} lg
+@media (max-width: 1600px){}    xl
 */
+/* Global styles for slider */
+.slider {
+    width: 340px;
+    margin: 0 10px;
+    display: inline-block;
+}
+.slider .rc-slider-track{
+    background-color: transparent;
+}
+
+.slider .rc-slider-rail {
+    height: 8px;
+}
+
+.slider .rc-slider-handle,
+.slider .rc-slider-handle:active,
+.slider .rc-slider-handle:focus,
+.slider .rc-slider-handle:hover {
+    background-color: green;
+    outline: none;
+    border: 2px solid green;
+    box-shadow: none;
+    width: 13px;
+    height: 13px;
+    margin-left: -7px;
+    margin-top: -3px;
+}
+
+/* md */
+@media (max-width: 991.98px){
+    .slider{
+        width: 150px;
+    }
+}
+
+
+/* global styles for transitios */
+.fade-exit{
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+}

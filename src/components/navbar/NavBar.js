@@ -32,7 +32,7 @@ const NavBar = (props) => {
         {showingAllColors && (
             <div>
                 <span>Level: {level}</span>
-                <div className={classes.slider}>
+                <div className='slider'>
                     <Slider 
                         defaultValue={level} 
                         min={100} max={900} 

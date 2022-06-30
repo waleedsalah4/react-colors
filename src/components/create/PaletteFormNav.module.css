@@ -2,8 +2,6 @@
     display: flex;
 }
 .navBtns{
-    /* display: flex;
-    flex-direction: row; */
     margin-right: 1rem;
 }
 .button {
@@ -11,4 +9,16 @@
 }
 .link {
     text-decoration: none;
+}
+
+/* xs */
+@media (max-width: 575.98px){
+    .navBtns{
+        margin-right: 0.5rem;
+        display: flex;
+    }
+    .button {
+        margin: 0 0.2rem !important;
+        padding: 0.3rem !important;
+    }
 }

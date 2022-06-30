@@ -1,9 +1,13 @@
 .root {
-    background-color: blue;
+    /* background-color: blue; */
     height: 100vh;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    overflow: auto;
+    /* background by SVGBackgrounds.com */
+    background-color: #394bad;
+    background-image: url('./bg.svg');
 }
 .container {
     width: 50%;
@@ -11,6 +15,7 @@
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .nav {
@@ -19,6 +24,10 @@
     justify-content: space-between;
     color: white;
     align-items: center;
+    padding: 1rem;
+}
+.heading{
+    font-size: 1.7rem;
 }
 
 .link {
@@ -29,5 +38,31 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 30%);
-    grid-gap: 5%;
+    grid-gap: 2.5rem;
+}
+
+/* media query */
+/* xl */
+@media (max-width: 1600px){
+    .container{
+        width: 80%;
+    }
+}
+
+/* md */ 
+@media (max-width: 991.98px){
+    .palettes{
+        grid-template-columns: repeat(2,50%);
+    }
+}
+
+/* xs */ 
+@media (max-width: 575.98px){
+    .container{
+        width: 75%;
+    }
+    .palettes{
+        grid-template-columns: repeat(1,100%);
+        grid-gap: 1.4rem;
+    }
 }

@@ -19,7 +19,8 @@
     text-decoration: none;
     color: black;
 }
-
+/*
+ these styles were moves to index.css to be global
 .slider {
     width: 340px;
     margin: 0 10px;
@@ -46,8 +47,17 @@
     margin-left: -7px;
     margin-top: -3px;
 }
-
+*/
 .selectContainer{
     margin-left: auto;
     margin-right: 1rem;
+}
+
+/* media query */
+
+/* xs */
+@media (max-width: 575.98px){
+    .logo{
+        display: none;
+    }
 }
