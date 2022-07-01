@@ -55,7 +55,7 @@ const PaletteList = (props) => {
                     key={palette.id} 
                     id={palette.id}
                     palette={palette} 
-                    handleClick={()=> goToPalette(palette.id)}
+                    handleClick={goToPalette}
                     // handleDelete={deletePalette}
                     openDialog={openDialog}
                 />

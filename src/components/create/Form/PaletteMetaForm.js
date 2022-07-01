@@ -60,7 +60,7 @@ const PaletteMetaForm = (props) => {
         setStage('emoji')
     }
     const savePalette = (emoji) => {
-        console.log(emoji)
+        // console.log(emoji)
         const newPalette = {
             paletteName: newPaletteName,
             emoji: emoji.native

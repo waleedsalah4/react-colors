@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import PaletteList from "./components/Palettes/PaletteList";
-import Palette from "./components/Palette";
+import Palette from "./components/layout/Palette";
 import seedColors from "./components/Colors/seedColors";
 import SingleColorPalette from "./components/Palettes/SingleColorPalette";
 import NewPaletteForm from "./components/create/NewPaletteForm";
@@ -41,6 +41,7 @@ const App = () => {
       <Route path="/palette/new" element={<NewPaletteForm savePalette={savePalette} palettes={palettes} />} />
       <Route path="/palette/:id" element={<Palette palettes={palettes} />} />
       <Route path="/palette/:paletteId/:colorId" element={<SingleColorPalette palettes={palettes} />} />
+      <Route path="*" element={<PaletteList palettes={palettes} deletePalette={deletePalette} />} />
     </Routes>
     // <div>
     //   <Palette  palette={generatePalette(seedColors[4])}/>

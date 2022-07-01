@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import seedColors from '../Colors/seedColors';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import {arrayMoveImmutable} from 'array-move';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -12,7 +14,6 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
-import {arrayMoveImmutable} from 'array-move';
 import classes from './NewPaletteForm.module.css'
 
 const drawerWidth = 300;
@@ -52,11 +53,10 @@ export default function NewPaletteForm(props) {
   const theme = useTheme();
   const navigate = useNavigate()
   const [open, setOpen] = useState(true);
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   const maxColors = 20;
   const paletteIsFull = colors.length >= maxColors;
-
-
+  // console.log(seedColorscolors.map(p => p.colors).flat())
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -66,23 +66,15 @@ export default function NewPaletteForm(props) {
     setOpen(false);
   };
 
-  
 
   const addNewColor = (newColor) => {
     setColors([...colors, newColor])
     
   }
 
-  
-
   const handleSubmitPalette = (newPalette) => {
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-") 
     newPalette.colors = colors
-    // const newPalette = {
-    //   paletteName: newPaletteName,
-    //   id: newPaletteName.toLowerCase().replace(/ /g, "-") ,
-    //   colors: colors
-    // }
     props.savePalette(newPalette)
     navigate('/')
 }
@@ -91,11 +83,18 @@ export default function NewPaletteForm(props) {
     setColors([])
   }
   const addRondomColor = () => {
-    //pick rondom color from existing palettes
-    const allColors = props.palettes.map(p => p.colors).flat()
+    //pick rondom color from seedColor(not from existing palette beacause it will cause an error in some cases )
+    const allColors = seedColors.map(p => p.colors).flat()
     //flat=> put all colors arrays in one array
-    var rand = Math.floor(Math.random() * allColors.length)
-    const randomColor = allColors[rand]
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true
+    while(isDuplicateColor){
+      rand = Math.floor(Math.random() * allColors.length)
+      randomColor = allColors[rand];
+      isDuplicateColor = colors.some(color => color.name === randomColor.name)
+      console.log(randomColor)
+    }
     setColors([...colors, randomColor])
   }
 

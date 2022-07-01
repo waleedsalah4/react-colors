@@ -9,7 +9,7 @@ const ColorBox = (props) => {
   const {name, background, moreUrl, showingFullPalette} = props;
   const [copied, setcopied] = useState(false)
   // console.log(showingFullPalette)
-  const isDarkColor = chroma(background).luminance() <= 0.08;
+  const isDarkColor = chroma(background).luminance() <= 0.08;//colorName
   const isLightColor = chroma(background).luminance() >= 0.7;
 
   useEffect(()=>{

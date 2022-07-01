@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ColorBox from './ColorBox';
-import NavBar from './navbar/NavBar';
+import NavBar from '../navbar/NavBar';
 // import seedColors from "./Colors/seedColors";
-import { generatePalette } from './Colors/colorHelpers';
-import PaletteFooter from './layout/PaletteFooter';
+import { generatePalette } from '../Colors/colorHelpers';
+import PaletteFooter from './PaletteFooter';
 // import './Palette.css';
 import classes from './Palette.module.css';
 

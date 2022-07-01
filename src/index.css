@@ -42,12 +42,12 @@ body {
 }
 
 /* md */
-@media (max-width: 991.98px){
+@media (max-width: 767.98px){
     .slider{
         width: 150px;
     }
 }
-
+/* ******************************************************************************** */
 
 /* global styles for transitios */
 .fade-exit{

@@ -2,8 +2,8 @@ import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import classes from './MiniPalette.module.css';
 
-function MiniPalette(props) {
-  const { palette, handleClick, openDialog } = props;
+const MiniPalette = (props) => {
+  const { palette, handleClick, openDialog, id } = props;
 
   const deletePalette = (e) => {
     e.stopPropagation();
@@ -16,10 +16,10 @@ function MiniPalette(props) {
       key={color.name}
       className={classes.miniColor} 
       style={{backgroundColor: color.color}}
-      ></div>
+    ></div>
   ))
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root} onClick={() => handleClick(id)}>
       <DeleteIcon 
         className={classes.deleteIcon} 
         sx={{ fontSize: 33 }} 
@@ -38,4 +38,4 @@ function MiniPalette(props) {
   )
 }
 
-export default MiniPalette
+export default React.memo(MiniPalette);

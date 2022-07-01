@@ -57,7 +57,11 @@ const ColorPickerForm = (props) => {
                 onChangeComplete={updateCurrColor}
                 className={classes.picker} 
             />
-            <ValidatorForm onSubmit={handleSubmit} className={classes.colorNameForm}>
+            <ValidatorForm 
+                onSubmit={handleSubmit} 
+                className={classes.colorNameForm}
+                instantValidate={false}
+            >
                 <TextValidator 
                     name='newColorName'
                     variant='filled'

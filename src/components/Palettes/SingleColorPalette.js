@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { generatePalette } from '../Colors/colorHelpers';
 import NavBar from '../navbar/NavBar';
 import PaletteFooter from '../layout/PaletteFooter';
-import ColorBox from '../ColorBox';
+import ColorBox from '../layout/ColorBox';
 import classes from './SingleColorPalette.module.css';
 
 

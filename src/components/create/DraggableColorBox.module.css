@@ -27,6 +27,13 @@
     justify-content: space-between;
 }
 
+.light {
+    color: rgba(255, 255, 255, 0.8);
+}
+.dark {
+    color: rgba(0, 0, 0, 0.6);
+}
+
 .deleteIcon{
     /* color: black; */
     transition: all 0.3s ease-in-out;
