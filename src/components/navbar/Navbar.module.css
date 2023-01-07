@@ -19,6 +19,19 @@
     text-decoration: none;
     color: black;
 }
+.logoEmogi {
+    display: none;
+    
+}
+.logoEmogi a {
+    text-decoration: none;
+    padding: 1rem;
+}
+.sliderContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*
  these styles were moves to index.css to be global
 .slider {
@@ -59,5 +72,8 @@
 @media (max-width: 575.98px){
     .logo{
         display: none;
+    }
+    .logoEmogi{
+        display: flex;
     }
 }

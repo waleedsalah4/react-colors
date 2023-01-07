@@ -29,8 +29,11 @@ const NavBar = (props) => {
         <div className={classes.logo}>
             <Link to='/'>reactcolorpicker</Link>
         </div>
+        <div className={classes.logoEmogi}>
+            <Link to='/'>🎨</Link>
+        </div>
         {showingAllColors && (
-            <div>
+            <div className={classes.sliderContainer}>
                 <span>Level: {level}</span>
                 <div className='slider'>
                     <Slider 
